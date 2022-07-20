@@ -1,6 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/prop-types */
-// Chakra imports
 import { Box, Flex, Image, Text, Tag, Link } from "@chakra-ui/react";
 
 import logo from "../../assets/logo.svg";
