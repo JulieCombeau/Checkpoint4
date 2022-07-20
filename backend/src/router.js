@@ -2,6 +2,7 @@ const express = require("express");
 
 const UserController = require("./controllers/UserController");
 const AuthController = require("./controllers/AuthController");
+const GameController = require("./controllers/GameControllers");
 
 const auth = require("./middlewares/auth");
 
@@ -19,5 +20,13 @@ router.delete("/users/:userId", UserController.deleteOne);
 
 router.post("/auth/login", AuthController.login);
 router.get("/auth/logout", auth, AuthController.logout);
+
+// Routes for Games
+
+router.post("/games", GameController.createOne);
+router.get("/games", GameController.getAll);
+router.get("/games/:gameId", GameController.getOne);
+router.put("/games/:gameId", GameController.updateOne);
+router.delete("/games/:gameId", GameController.deleteOne);
 
 module.exports = router;
