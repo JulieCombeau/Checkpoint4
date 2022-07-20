@@ -9,3 +9,42 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model user {
+  id             Int     @id @default(autoincrement())
+  firstname      String  @db.VarChar(100)
+  lastname       String  @db.VarChar(100)
+  email          String  @unique @db.VarChar(100)
+  hashedPassword String  @db.VarChar(255)
+  isAdmin        Boolean @default(false)
+}
+
+model game {
+  id           Int            @id @default(autoincrement())
+  title        String         @db.VarChar(100)
+  description  String         @db.LongText
+  content      String         @db.LongText
+  picture      String?        @db.VarChar(1000)
+  players      String         @db.VarChar(100)
+  age          String         @db.VarChar(100)
+  duration     String         @db.VarChar(100)
+  category     String         @db.VarChar(100)
+  game_editors game_editors[]
+}
+
+model editors {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique @db.VarChar(255)
+  game_editors game_editors[]
+}
+
+model game_editors {
+  id            Int     @id @default(autoincrement())
+  gameId        Int
+  editorsId     Int
+  fk_game_id    game    @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  fk_editors_id editors @relation(fields: [editorsId], references: [id], onDelete: Cascade)
+
+  @@index([gameId], map: "game_editors_gameId_fkey")
+  @@index([editorsId], map: "game_editors_editorsId_fkey")
+}
