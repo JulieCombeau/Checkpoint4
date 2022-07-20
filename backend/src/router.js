@@ -3,6 +3,8 @@ const express = require("express");
 const UserController = require("./controllers/UserController");
 const AuthController = require("./controllers/AuthController");
 
+const auth = require("./middlewares/auth");
+
 const router = express.Router();
 
 // Routes for Users
@@ -16,6 +18,6 @@ router.delete("/users/:userId", UserController.deleteOne);
 // Routes for Authentification
 
 router.post("/auth/login", AuthController.login);
-router.get("/auth/logout", AuthController.logout);
+router.get("/auth/logout", auth, AuthController.logout);
 
 module.exports = router;
