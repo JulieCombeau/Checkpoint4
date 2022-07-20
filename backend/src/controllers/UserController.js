@@ -33,7 +33,7 @@ const createOne = async (req, res) => {
       }
     }
   }
-  return null;
+  return res.status(200).json("Utilisateur coorectement crée");
 };
 
 const getAll = async (req, res) => {

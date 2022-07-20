@@ -9,15 +9,14 @@ exports.login = (req, res) => {
     if (!user) {
       res.status(401).send("Invalid credentials");
     } else {
-      verifyPassword(password, user.password).then((verification) => {
+      verifyPassword(password, user.hashedPassword).then((verification) => {
         if (verification) {
           // eslint-disable-next-line no-param-reassign
-          delete user.password;
+          delete user.hashedPassword;
           const token = encodeJWT(user);
-
           res.cookie("auth_token", token, { httpOnly: true, secure: false });
 
-          res.status(200).json({ username: user.name });
+          res.status(200).json({ username: user.lastname });
         } else {
           res.status(401).send("Invalid credentials");
         }

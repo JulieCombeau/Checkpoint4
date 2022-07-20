@@ -1,11 +1,13 @@
 const jwt = require("jsonwebtoken");
 
+const accessTokenSecret = process.env.TOKEN_SECRET;
+
 const encodeJWT = (payload) => {
-  return jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+  return jwt.sign({ payload }, accessTokenSecret, { expiresIn: "1h" });
 };
 
 const decodeJWT = (token) => {
-  return jwt.decode(token, process.env.TOKEN_SECRET);
+  return jwt.decode(token, accessTokenSecret);
 };
 
 module.exports = { encodeJWT, decodeJWT };
