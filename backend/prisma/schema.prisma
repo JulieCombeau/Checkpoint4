@@ -41,10 +41,10 @@ model editors {
 model game_editors {
   id            Int     @id @default(autoincrement())
   gameId        Int
-  editorsId     Int
+  editorId      Int
   fk_game_id    game    @relation(fields: [gameId], references: [id], onDelete: Cascade)
-  fk_editors_id editors @relation(fields: [editorsId], references: [id], onDelete: Cascade)
+  fk_editors_id editors @relation(fields: [editorId], references: [id], onDelete: Cascade)
 
   @@index([gameId], map: "game_editors_gameId_fkey")
-  @@index([editorsId], map: "game_editors_editorsId_fkey")
+  @@index([editorId], map: "game_editors_editorsId_fkey")
 }

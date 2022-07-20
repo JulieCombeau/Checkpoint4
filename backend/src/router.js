@@ -4,7 +4,7 @@ const UserController = require("./controllers/UserController");
 const AuthController = require("./controllers/AuthController");
 const GameController = require("./controllers/GameControllers");
 const EditorController = require("./controllers/EditorControllers");
-// const GameEditorsController = require("./controllers/");
+const GameEditorsController = require("./controllers/GameEditorsControllers");
 
 const auth = require("./middlewares/auth");
 
@@ -40,18 +40,18 @@ router.delete("/editors/:editorId", EditorController.deleteOne);
 
 // Routes for services of one freelancer
 
-// router.get("/games/:gameId/editors", GameEditorsController.getAll);
-// router.get(
-//   "/games/:gameId/editors/:editorId",
-//   GameEditorsController.getOneByFreelancerId
-// );
-// router.post(
-//   "/games/:gameId/editors/:editorId",
-//   GameEditorsController.createOne
-// );
-// router.delete(
-//   "/games/:gameId/editors/:editorId",
-//   GameEditorsController.deleteOne
-// );
+router.get("/games/:gameId/editors", GameEditorsController.getAll);
+router.get(
+  "/games/:gameId/editors/:editorId",
+  GameEditorsController.getOneByGameId
+);
+router.post(
+  "/games/:gameId/editors/:editorId",
+  GameEditorsController.createOne
+);
+router.delete(
+  "/games/:gameId/editors/:editorId",
+  GameEditorsController.deleteOne
+);
 
 module.exports = router;
