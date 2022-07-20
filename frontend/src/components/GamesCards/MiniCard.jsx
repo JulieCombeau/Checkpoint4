@@ -1,26 +1,56 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 // Chakra imports
-import { Box, Flex, Image, Text, Tag } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, Tag, Link } from "@chakra-ui/react";
 
 import logo from "../../assets/logo.svg";
 
 export default function MiniCard() {
   return (
-    <Flex direction={{ base: "column" }} justify="center" w="180px">
-      <Box mb={{ base: "20px", "2xl": "20px" }} position="relative">
-        <Image
-          src={logo}
-          w={{ base: "100%", "3xl": "100%" }}
-          h={{ base: "100%", "3xl": "100%" }}
-          borderRadius="20px"
-        />
-      </Box>
+    <Flex
+      bgColor="white"
+      direction={{ base: "column" }}
+      justify="center"
+      w="180px"
+      boxShadow="2xl"
+      borderRadius="20px"
+    >
+      <Link href="/détails/:gameId">
+        <Box mb="0.5rem" position="relative" borderTopRadius="20px">
+          <Image
+            src={logo}
+            w={{ base: "100%", "3xl": "100%" }}
+            h={{ base: "100%", "3xl": "100%" }}
+          />
+        </Box>
+      </Link>
+      <Flex
+        justifyContent="center"
+        columnGap="1"
+        rowGap="2"
+        flexWrap="wrap"
+        h="fit-content"
+        w="fit-content"
+      >
+        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white">
+          Nb joueurs
+        </Tag>
+        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white">
+          Age
+        </Tag>
+        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white">
+          Durée
+        </Tag>
+        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white">
+          Catégorie
+        </Tag>
+      </Flex>
       <Flex
         flexDirection="column"
         justify="space-between"
         h="100%"
         alignItems="center"
+        my="0.5rem"
       >
         <Flex
           justify="space-between"
@@ -36,7 +66,7 @@ export default function MiniCard() {
         >
           <Flex direction="column" alignItems="center">
             <Text
-              color="blue"
+              color="#4F3521"
               fontSize={{
                 base: "xl",
                 md: "lg",
@@ -52,21 +82,7 @@ export default function MiniCard() {
             >
               TITRE JEUX
             </Text>
-            <Text
-              color="secondaryGray.600"
-              fontSize={{
-                base: "sm",
-              }}
-              fontWeight="400"
-            >
-              TTTRE STATUS
-            </Text>
           </Flex>
-        </Flex>
-        <Flex gap="5px">
-          <Tag size="sm" variant="subtle" bgColor="black" color="white">
-            NOM DU TAG
-          </Tag>
         </Flex>
       </Flex>
     </Flex>
