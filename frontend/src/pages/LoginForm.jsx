@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   Box,
@@ -13,11 +13,15 @@ import {
 } from "@chakra-ui/react";
 import backendAPI from "../services/backendAPI";
 
+import CurrentUserContext from "../contexts/UserContext";
+
 import Header from "../components/Header";
 
 export default function LoginForm() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  const { setUser } = useContext(CurrentUserContext);
 
   const navigate = useNavigate();
   const toast = useToast();
@@ -30,6 +34,8 @@ export default function LoginForm() {
           password: loginPassword,
         })
         .then((response) => {
+          setUser(response.data);
+          localStorage.setItem("user", JSON.stringify(response.data));
           if (response) {
             toast({
               title: "Vous êtes bien connecté(e).",

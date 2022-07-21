@@ -1,9 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Flex, Button, Image } from "@chakra-ui/react";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import backendAPI from "../services/backendAPI";
+
+import CurrentUserContext from "../contexts/UserContext";
 
 import logo from "../assets/logo.svg";
 
@@ -11,6 +13,7 @@ export default function Sidebar() {
   const [isSignUp, setIsSignUp] = useState(
     JSON.parse(localStorage.getItem("isUserLoggedIn"))
   );
+  const { user } = useContext(CurrentUserContext);
 
   const navigate = useNavigate();
 
@@ -24,16 +27,6 @@ export default function Sidebar() {
       })
       .catch((err) => console.error(err.message));
   };
-
-  // useEffect(() => {
-  //   if (JSON.parse(localStorage.getItem("isUserLoggedIn"))) {
-  //     backendAPI
-  //       .get("/api/users")
-  //       .then((res) => {
-  //       })
-  //       .catch((err) => console.error(err));
-  //   }
-  // }, []);
 
   return (
     <Flex
@@ -74,6 +67,21 @@ export default function Sidebar() {
             Accueil
           </Button>
         </Link>
+        <Button
+          fontSize={{ base: "sm", md: "md" }}
+          padding="10px"
+          minW="fit-content"
+          w="15vw"
+          fontWeight="500"
+          bgColor="transparent"
+          borderRadius="4px"
+          color="black"
+          border="2px solid"
+          borderColor="#4F3521"
+          _hover={{ bgColor: "#4F3521", color: "white" }}
+        >
+          Inspiration
+        </Button>
         {isSignUp === true ? (
           <Link to="/register">
             <Button
@@ -131,20 +139,25 @@ export default function Sidebar() {
             </Link>
           </>
         )}
-        <Button
-          padding="10px"
-          minW="fit-content"
-          w="15vw"
-          fontWeight="500"
-          bgColor="transparent"
-          borderRadius="4px"
-          color="black"
-          border="2px solid"
-          borderColor="#4F3521"
-          _hover={{ bgColor: "#4F3521", color: "white" }}
-        >
-          Inspiration
-        </Button>
+        {user.user.isAdmin && isSignUp === true && (
+          <Link to="/dashboardAdministrator">
+            <Button
+              fontSize={{ base: "sm", md: "md" }}
+              padding="10px"
+              minW="fit-content"
+              w="15vw"
+              fontWeight="500"
+              bgColor="transparent"
+              borderRadius="4px"
+              color="black"
+              border="2px solid"
+              borderColor="#4F3521"
+              _hover={{ bgColor: "#4F3521", color: "white" }}
+            >
+              Dashboard
+            </Button>
+          </Link>
+        )}
       </Flex>
     </Flex>
   );
