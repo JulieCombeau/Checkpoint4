@@ -21,7 +21,7 @@ model user {
 
 model game {
   id           Int            @id @default(autoincrement())
-  title        String         @db.VarChar(100)
+  title        String         @unique @db.VarChar(100)
   description  String         @db.LongText
   content      String         @db.LongText
   picture      String?        @db.VarChar(1000)
