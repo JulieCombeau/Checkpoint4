@@ -18,7 +18,7 @@ import PropTypes from "prop-types";
 import backendAPI from "../../../services/backendAPI";
 
 // eslint-disable-next-line react/prop-types
-export default function CollapseUpdatedGame({ isOpen, game }) {
+export default function CollapseUpdatedGame({ isOpen, game, onToggle }) {
   const toast = useToast();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -63,6 +63,7 @@ export default function CollapseUpdatedGame({ isOpen, game }) {
             isClosable: true,
           });
         }
+        onToggle();
       })
       .catch((error) => {
         if (error) {

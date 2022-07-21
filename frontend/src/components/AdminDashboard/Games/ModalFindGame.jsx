@@ -12,17 +12,59 @@ import {
   Tag,
   Button,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
+
 import PropTypes from "prop-types";
 import { GiSandsOfTime, GiTabletopPlayers } from "react-icons/gi";
 import { MdOutlineCategory, MdOutlineFamilyRestroom } from "react-icons/md";
+import backendAPI from "../../../services/backendAPI";
 
 import CollapseUpdatedGame from "./CollapseUpdatedGame";
 
 // eslint-disable-next-line react/prop-types
-export default function ModalFindGame({ isOpen, onClose, game }) {
+export default function ModalFindGame({
+  isOpen,
+  onClose,
+  game,
+  updated,
+  setUpdated,
+}) {
+  const toast = useToast();
+
   const { isOpen: isCollapseOpen, onToggle: onCollapseToggle } =
     useDisclosure();
+
+  const deleteGame = (e) => {
+    e.preventDefault();
+    backendAPI
+      .delete(`/api/games/${game.id}`)
+      .then((response) => {
+        if (response) {
+          toast({
+            title: "Le jeu a bien été supprimé.",
+            status: "success",
+            duration: 7000,
+            position: "bottom-right",
+            isClosable: true,
+          });
+          setUpdated(!updated);
+          onClose();
+        }
+      })
+      .catch((error) => {
+        if (error) {
+          toast({
+            title: "Erreur dans la suppression du jeu",
+            status: "error",
+            duration: 7000,
+            position: "bottom-right",
+            isClosable: true,
+          });
+        }
+        console.warn(error);
+      });
+  };
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="4xl">
       <ModalOverlay />
@@ -129,9 +171,9 @@ export default function ModalFindGame({ isOpen, onClose, game }) {
                   border="2px"
                   borderColor="#4F3521"
                   type="button"
-                  //   onClick={onToggle}
+                  onClick={deleteGame}
                 >
-                  Ajouter un jeu
+                  Supprimer le jeu
                 </Button>
               </Flex>
             </Flex>

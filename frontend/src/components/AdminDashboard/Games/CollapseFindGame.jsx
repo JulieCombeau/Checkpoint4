@@ -31,6 +31,7 @@ export default function AdminGame({ isOpen }) {
 
   const [gamesList, setGamesList] = useState([]);
   const [search, setSearch] = useState("");
+  const [updated, setUpdated] = useState(false);
 
   const getAllGames = () => {
     backendAPI
@@ -44,7 +45,7 @@ export default function AdminGame({ isOpen }) {
   };
   useEffect(() => {
     getAllGames();
-  }, []);
+  }, [updated]);
 
   return (
     <Collapse in={isOpen} animateOpacity>
@@ -152,6 +153,8 @@ export default function AdminGame({ isOpen }) {
                         </Flex>
                       </Button>
                       <ModalFindGame
+                        updated={updated}
+                        setUpdated={setUpdated}
                         game={game}
                         isOpen={isModalOpen}
                         onOpen={onModalOpen}
