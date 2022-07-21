@@ -10,22 +10,28 @@ import {
   Flex,
   Image,
   Tag,
+  Button,
+  useDisclosure,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { GiSandsOfTime, GiTabletopPlayers } from "react-icons/gi";
 import { MdOutlineCategory, MdOutlineFamilyRestroom } from "react-icons/md";
 
+import CollapseUpdatedGame from "./CollapseUpdatedGame";
+
 // eslint-disable-next-line react/prop-types
 export default function ModalFindGame({ isOpen, onClose, game }) {
+  const { isOpen: isCollapseOpen, onToggle: onCollapseToggle } =
+    useDisclosure();
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="3xl">
+    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Informations du jeu</ModalHeader>
         <ModalCloseButton />
         <ModalBody maxW="100%">
           <Flex
-            direction="row"
+            direction={{ base: "column", md: "row" }}
             p={5}
             w="100%"
             align="center"
@@ -45,9 +51,11 @@ export default function ModalFindGame({ isOpen, onClose, game }) {
               justifyContent="space-between"
               width="100%"
               alignItems="center"
+              alignSelf="flex-start"
               flexDir="column"
+              rowGap="5"
             >
-              <Text fontSize="2xl">{game.title}</Text>
+              <Text fontSize="3xl">{game.title}</Text>
               <Flex
                 justifyContent="center"
                 columnGap="1"
@@ -97,8 +105,42 @@ export default function ModalFindGame({ isOpen, onClose, game }) {
                   <Text>{game.category}</Text>
                 </Tag>
               </Flex>
+              <Text noOfLines={4}>{game.description}</Text>
+              <Flex gap="8">
+                <Button
+                  mt="2rem"
+                  alignSelf="center"
+                  size="md"
+                  height="48px"
+                  width="200px"
+                  border="2px"
+                  borderColor="#4F3521"
+                  type="button"
+                  onClick={() => onCollapseToggle()}
+                >
+                  Modifier
+                </Button>
+                <Button
+                  mt="2rem"
+                  alignSelf="center"
+                  size="md"
+                  height="48px"
+                  width="200px"
+                  border="2px"
+                  borderColor="#4F3521"
+                  type="button"
+                  //   onClick={onToggle}
+                >
+                  Ajouter un jeu
+                </Button>
+              </Flex>
             </Flex>
           </Flex>
+          <CollapseUpdatedGame
+            isOpen={isCollapseOpen}
+            onToggle={onCollapseToggle}
+            game={game}
+          />
         </ModalBody>
       </ModalContent>
     </Modal>
