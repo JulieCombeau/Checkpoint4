@@ -12,12 +12,12 @@ export default function AdminGame() {
 
   const findGame = () => {
     onToggleFindGame();
-    !isOpenCreateGame;
+    isOpenCreateGame && onToggleCreateGame();
   };
 
-  const creteGame = () => {
+  const createGame = () => {
     onToggleCreateGame();
-    !isOpenFindGame;
+    isOpenFindGame && onToggleFindGame();
   };
 
   return (
@@ -40,7 +40,7 @@ export default function AdminGame() {
             alignSelf="center"
             size="md"
             height="48px"
-            width="200px"
+            width="fit-content"
             border="2px"
             borderColor="#4F3521"
             type="button"
@@ -53,11 +53,11 @@ export default function AdminGame() {
             alignSelf="center"
             size="md"
             height="48px"
-            width="200px"
+            width="fit-content"
             border="2px"
             borderColor="#4F3521"
             type="button"
-            onClick={creteGame}
+            onClick={createGame}
           >
             Ajouter un jeu
           </Button>

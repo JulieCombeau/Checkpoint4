@@ -76,8 +76,8 @@ export default function CollapseCreateGame({ isOpen, onToggle }) {
         m="auto"
         alignItems="center"
         borderRadius="25px"
-        padding="40px"
-        gap="10"
+        padding={{ base: "0", md: "40px" }}
+        gap={{ base: "0", md: "10" }}
       >
         <Stack
           className="noAccount"
@@ -88,6 +88,7 @@ export default function CollapseCreateGame({ isOpen, onToggle }) {
         >
           <FormControl>
             <Input
+              size={{ base: "sm", md: "md" }}
               type="text"
               id="title"
               name="Title"
@@ -98,6 +99,7 @@ export default function CollapseCreateGame({ isOpen, onToggle }) {
           </FormControl>
           <FormControl>
             <Input
+              size={{ base: "sm", md: "md" }}
               type="text"
               id="players"
               name="players"
@@ -108,6 +110,7 @@ export default function CollapseCreateGame({ isOpen, onToggle }) {
           </FormControl>
           <FormControl>
             <Input
+              size={{ base: "sm", md: "md" }}
               type="text"
               id="category"
               name="category"
@@ -136,6 +139,7 @@ export default function CollapseCreateGame({ isOpen, onToggle }) {
         >
           <FormControl>
             <Input
+              size={{ base: "sm", md: "md" }}
               type="text"
               id="age"
               name="age"
@@ -146,6 +150,7 @@ export default function CollapseCreateGame({ isOpen, onToggle }) {
           </FormControl>
           <FormControl>
             <Input
+              size={{ base: "sm", md: "md" }}
               type="text"
               id="duration"
               name="duration"
@@ -156,6 +161,7 @@ export default function CollapseCreateGame({ isOpen, onToggle }) {
           </FormControl>
           <FormControl>
             <Input
+              size={{ base: "sm", md: "md" }}
               type="text"
               id="picture"
               name="picture"
