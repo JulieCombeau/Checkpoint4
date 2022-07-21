@@ -139,7 +139,8 @@ export default function Header() {
             </Link>
           </>
         )}
-        {user.user.isAdmin && isSignUp === true && (
+        {/* A DECOMMENTER SI PROBLEME */}
+        {user && user.user.isAdmin && isSignUp === true && (
           <Link to="/dashboardAdministrator">
             <Button
               fontSize={{ base: "sm", md: "md" }}
