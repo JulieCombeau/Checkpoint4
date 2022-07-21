@@ -15,7 +15,7 @@ export default function MiniCard({ game }) {
       boxShadow="2xl"
       borderRadius="20px"
     >
-      <Link href={`/détails/${game.id}`}>
+      <Link href={`/details/${game.id}`}>
         <Box
           mb="0.5rem"
           position="relative"
