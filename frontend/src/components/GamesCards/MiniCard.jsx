@@ -1,25 +1,29 @@
-import { Box, Flex, Image, Text, Tag, Link } from "@chakra-ui/react";
+/* eslint-disable react/prop-types */
+import { Box, Flex, Text, Tag, Link } from "@chakra-ui/react";
 
-import logo from "../../assets/logo.svg";
+import { GiSandsOfTime, GiTabletopPlayers } from "react-icons/gi";
+import { MdOutlineCategory, MdOutlineFamilyRestroom } from "react-icons/md";
 
-export default function MiniCard() {
+export default function MiniCard({ game }) {
   return (
     <Flex
       bgColor="white"
       direction={{ base: "column" }}
       justify="center"
-      w="180px"
+      maxH="250px"
+      w="200px"
       boxShadow="2xl"
       borderRadius="20px"
     >
-      <Link href="/détails/:gameId">
-        <Box mb="0.5rem" position="relative" borderTopRadius="20px">
-          <Image
-            src={logo}
-            w={{ base: "100%", "3xl": "100%" }}
-            h={{ base: "100%", "3xl": "100%" }}
-          />
-        </Box>
+      <Link href={`/détails/${game.id}`}>
+        <Box
+          mb="0.5rem"
+          position="relative"
+          borderTopRadius="20px"
+          bgImage={game.picture}
+          h="150px"
+          bgSize="cover"
+        />
       </Link>
       <Flex
         justifyContent="center"
@@ -29,17 +33,21 @@ export default function MiniCard() {
         h="fit-content"
         w="fit-content"
       >
-        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white">
-          Nb joueurs
+        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white" gap="2">
+          <GiTabletopPlayers />
+          <Text>{game.players}</Text>
         </Tag>
-        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white">
-          Age
+        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white" gap="2">
+          <MdOutlineFamilyRestroom />
+          <Text>{game.age}</Text>
         </Tag>
-        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white">
-          Durée
+        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white" gap="2">
+          <GiSandsOfTime />
+          <Text>{game.duration}</Text>
         </Tag>
-        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white">
-          Catégorie
+        <Tag size="sm" variant="subtle" bgColor="#A07B5E" color="white" gap="2">
+          <MdOutlineCategory />
+          <Text>{game.category}</Text>
         </Tag>
       </Flex>
       <Flex
@@ -64,20 +72,13 @@ export default function MiniCard() {
           <Flex direction="column" alignItems="center">
             <Text
               color="#4F3521"
-              fontSize={{
-                base: "xl",
-                md: "lg",
-                lg: "lg",
-                xl: "lg",
-                "2xl": "md",
-                "3xl": "lg",
-              }}
+              fontSize="xl"
               mb="5px"
               fontWeight="bold"
               textAlign="center"
               noOfLines={1}
             >
-              TITRE JEUX
+              {game.title}
             </Text>
           </Flex>
         </Flex>

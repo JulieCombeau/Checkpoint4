@@ -9,7 +9,7 @@ import CurrentUserContext from "../contexts/UserContext";
 
 import logo from "../assets/logo.svg";
 
-export default function Sidebar() {
+export default function Header() {
   const [isSignUp, setIsSignUp] = useState(
     JSON.parse(localStorage.getItem("isUserLoggedIn"))
   );
