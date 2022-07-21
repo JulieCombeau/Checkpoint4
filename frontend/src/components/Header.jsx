@@ -9,7 +9,7 @@ import CurrentUserContext from "../contexts/UserContext";
 
 import logo from "../assets/logo.svg";
 
-export default function Sidebar() {
+export default function Header() {
   const [isSignUp, setIsSignUp] = useState(
     JSON.parse(localStorage.getItem("isUserLoggedIn"))
   );
@@ -139,7 +139,8 @@ export default function Sidebar() {
             </Link>
           </>
         )}
-        {user.user.isAdmin && isSignUp === true && (
+        {/* A DECOMMENTER SI PROBLEME */}
+        {user && user.user.isAdmin && isSignUp === true && (
           <Link to="/dashboardAdministrator">
             <Button
               fontSize={{ base: "sm", md: "md" }}

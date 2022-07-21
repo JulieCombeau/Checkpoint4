@@ -1,11 +1,17 @@
 import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
 
+import { useContext } from "react";
+
 import Header from "../components/Header";
 import Filters from "../components/Home/Filters";
 import MiniCard from "../components/GamesCards/MiniCard";
 import logo from "../assets/logo.svg";
 
+import CurrentGameContext from "../contexts/GameContext";
+
 export default function Home() {
+  const { games } = useContext(CurrentGameContext);
+
   return (
     <Box h="100vh">
       <Flex flexDir={{ base: "column", md: "row" }}>
@@ -111,22 +117,9 @@ export default function Home() {
                   },
                 }}
               >
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
+                {games.map((game) => (
+                  <MiniCard game={game} />
+                ))}
               </Flex>
             </Flex>
           </Flex>

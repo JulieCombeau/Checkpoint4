@@ -30,6 +30,7 @@ export default function AdminGame({ isOpen }) {
   } = useDisclosure();
 
   const [gamesList, setGamesList] = useState([]);
+  const [gameId, setGameId] = useState("");
   const [search, setSearch] = useState("");
   const [updated, setUpdated] = useState(false);
 
@@ -47,6 +48,10 @@ export default function AdminGame({ isOpen }) {
     getAllGames();
   }, [updated]);
 
+  const getOneGameId = (id) => {
+    setGameId(id);
+    onModalOpen();
+  };
   return (
     <Collapse in={isOpen} animateOpacity>
       <Flex
@@ -125,13 +130,14 @@ export default function AdminGame({ isOpen }) {
                         align="center"
                         mb="10px"
                         h="fit-content"
-                        onClick={() => onModalOpen()}
+                        onClick={() => getOneGameId(game.id)}
                       >
                         <Image
                           className="movie-img-searchbar"
                           src={game.picture}
                           alt="Movie poster"
                           style={{
+                            maxWidth: "8vw",
                             maxHeight: "8vh",
                             borderRadius: "8px",
                           }}
@@ -155,7 +161,7 @@ export default function AdminGame({ isOpen }) {
                       <ModalFindGame
                         updated={updated}
                         setUpdated={setUpdated}
-                        game={game}
+                        gameId={gameId}
                         isOpen={isModalOpen}
                         onOpen={onModalOpen}
                         onClose={onModalClose}

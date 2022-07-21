@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -26,19 +27,34 @@ import CollapseUpdatedGame from "./CollapseUpdatedGame";
 export default function ModalFindGame({
   isOpen,
   onClose,
-  game,
+  gameId,
   updated,
   setUpdated,
 }) {
   const toast = useToast();
-
   const { isOpen: isCollapseOpen, onToggle: onCollapseToggle } =
     useDisclosure();
+
+  const [game, setGame] = useState([]);
+
+  const getOneGame = () => {
+    backendAPI
+      .get(`/api/games/${gameId}`)
+      .then((response) => {
+        setGame(response.data);
+      })
+      .catch((error) => {
+        console.warn(error);
+      });
+  };
+  useEffect(() => {
+    getOneGame();
+  }, [gameId]);
 
   const deleteGame = (e) => {
     e.preventDefault();
     backendAPI
-      .delete(`/api/games/${game.id}`)
+      .delete(`/api/games/${gameId}`)
       .then((response) => {
         if (response) {
           toast({
@@ -85,6 +101,7 @@ export default function ModalFindGame({
               alt="game picture"
               style={{
                 maxHeight: "30vh",
+                maxWidth: "200px",
                 borderRadius: "8px",
               }}
             />
