@@ -16,7 +16,7 @@ exports.login = (req, res) => {
           const token = encodeJWT(user);
           res.cookie("auth_token", token, { httpOnly: true, secure: false });
 
-          res.status(200).json({ username: user.lastname });
+          res.status(200).json({ user });
         } else {
           res.status(401).send("Invalid credentials");
         }

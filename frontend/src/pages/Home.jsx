@@ -9,14 +9,7 @@ export default function Home() {
   return (
     <Box h="100vh">
       <Flex flexDir={{ base: "column", md: "row" }}>
-        <Flex
-          minW="15vw"
-          minH={{ base: "15vh", md: "100vh" }}
-          gap="20px"
-          flexDir="column"
-        >
-          <Header />
-        </Flex>
+        <Header />
         <Flex
           bgColor="#FFFDF8"
           flexDir="column"
@@ -30,13 +23,16 @@ export default function Home() {
           </Heading>
           <Flex w="100%" flexDir={{ base: "column", md: "row" }} rowGap="5">
             <Flex
+              ml="auto"
+              alignSelf="center"
               boxShadow="2xl"
               borderRadius="20px"
               h="fit-content"
               p="1rem"
               flexDir={{ base: "row", md: "column" }}
               justifyContent="space-between"
-              w={{ base: "100%", md: "25%" }}
+              w={{ base: "100%", md: "20%" }}
+              maxW={{ base: "100%", md: "200px" }}
               align={{ base: "center", md: "left" }}
               rowGap="50px"
             >
@@ -47,8 +43,8 @@ export default function Home() {
                 border="solid 1px"
                 m="0.5rem"
                 borderRadius="20px"
-                w="150px"
-                h="150px"
+                w="100%"
+                h="33%"
                 alignSelf="center"
               >
                 <Image src={logo} w="100%" h="50%" />
@@ -61,8 +57,8 @@ export default function Home() {
                 border="solid 1px"
                 m="0.5rem"
                 borderRadius="20px"
-                w="150px"
-                h="150px"
+                w="100%"
+                h="33%"
                 alignSelf="center"
               >
                 <Image src={logo} w="100%" h="50%" />
@@ -75,8 +71,8 @@ export default function Home() {
                 border="solid 1px"
                 m="0.5rem"
                 borderRadius="20px"
-                w="150px"
-                h="150px"
+                w="100%"
+                h="33%"
                 alignSelf="center"
               >
                 <Image src={logo} w="100%" h="50%" />
@@ -84,6 +80,7 @@ export default function Home() {
               </Flex>
             </Flex>
             <Flex
+              mx="auto"
               p="1rem"
               flexDir="column"
               w={{ base: "100%", md: "75%" }}
@@ -93,13 +90,26 @@ export default function Home() {
             >
               <Filters />
               <Flex
-                justifyContent="center"
-                columnGap="3"
+                width={{ base: "100%", xl: "98%" }}
+                justifyContent="space-around"
                 rowGap="2"
                 flexWrap="wrap"
-                h="fit-content"
-                // minW="100%"
-                w="fit-content"
+                flexDirection="row"
+                h="70vh"
+                scrollBehavior="smooth"
+                overflowY="auto"
+                sx={{
+                  "&::-webkit-scrollbar": {
+                    width: "18px",
+                    borderRadius: "8px",
+                    backgroundColor: "white",
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    borderRadius: "8px",
+                    border: "2px",
+                    color: "#4F3521",
+                  },
+                }}
               >
                 <MiniCard />
                 <MiniCard />
