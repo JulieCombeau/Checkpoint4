@@ -1,9 +1,24 @@
+/* eslint-disable no-unused-expressions */
 import { Button, Flex, useDisclosure } from "@chakra-ui/react";
 
 import CollapseFindGame from "./CollapseFindGame";
+import CollapseCreateGame from "./CollapseCreateGame";
 
 export default function AdminGame() {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen: isOpenFindGame, onToggle: onToggleFindGame } =
+    useDisclosure();
+  const { isOpen: isOpenCreateGame, onToggle: onToggleCreateGame } =
+    useDisclosure();
+
+  const findGame = () => {
+    onToggleFindGame();
+    !isOpenCreateGame;
+  };
+
+  const creteGame = () => {
+    onToggleCreateGame();
+    !isOpenFindGame;
+  };
 
   return (
     <Flex flexDir={{ base: "column", md: "row" }}>
@@ -29,7 +44,7 @@ export default function AdminGame() {
             border="2px"
             borderColor="#4F3521"
             type="button"
-            onClick={onToggle}
+            onClick={findGame}
           >
             Trouver un jeu
           </Button>
@@ -42,12 +57,16 @@ export default function AdminGame() {
             border="2px"
             borderColor="#4F3521"
             type="button"
-            onClick={onToggle}
+            onClick={creteGame}
           >
             Ajouter un jeu
           </Button>
         </Flex>
-        <CollapseFindGame isOpen={isOpen} />
+        <CollapseFindGame isOpen={isOpenFindGame} />
+        <CollapseCreateGame
+          isOpen={isOpenCreateGame}
+          onToggle={onToggleCreateGame}
+        />
       </Flex>
     </Flex>
   );
