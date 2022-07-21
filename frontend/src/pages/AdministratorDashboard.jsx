@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import Header from "../components/Header";
 import AdminUser from "../components/AdminDashboard/AdminUser";
+import AdminGame from "../components/AdminDashboard/Games/AdminGame";
 
 export default function AdministratorDashboard() {
   const [isGame, setIsGame] = useState(false);
@@ -43,7 +44,7 @@ export default function AdministratorDashboard() {
                 />
                 <Text fontSize="xl">Jeu</Text>
               </Flex>
-              <AdminUser />
+              {isGame ? <AdminGame /> : <AdminUser />}
             </Flex>
           </Flex>
         </Flex>

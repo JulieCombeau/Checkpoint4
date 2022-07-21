@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import backendAPI from "../../services/backendAPI";
 
-export default function LoginForm() {
+export default function AdminUser() {
   const { isOpen, onToggle } = useDisclosure();
   const [usersList, setUsersList] = useState([]);
 
