@@ -1,4 +1,13 @@
-import { Flex, Select, Button } from "@chakra-ui/react";
+import {
+  Flex,
+  Select,
+  Button,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  IconButton,
+} from "@chakra-ui/react";
+import { Search2Icon } from "@chakra-ui/icons";
 import { useState, useContext } from "react";
 import MiniCard from "../GamesCards/MiniCard";
 
@@ -11,6 +20,7 @@ export default function Filters() {
   const [choosenValuePlayers, setChoosenValuePlayers] = useState("");
   const [choosenValueAge, setChoosenValueAge] = useState("");
   const [choosenValueDuration, setChoosenValueDuration] = useState("");
+  const [search, setSearch] = useState("");
 
   const handleChangeCategory = (e) => {
     setChoosenValueCategory(e.target.value);
@@ -23,6 +33,10 @@ export default function Filters() {
   };
   const handleChangeDuration = (e) => {
     setChoosenValueDuration(e.target.value);
+  };
+
+  const handleChangeSearch = (e) => {
+    setSearch(e.target.value);
   };
 
   const resetFilter = () => {
@@ -50,6 +64,31 @@ export default function Filters() {
         h="fit-content"
         w="fit-content"
       >
+        <Flex align="center" w="100%" maxWidth="100%">
+          <InputGroup>
+            <InputLeftElement
+              height="-webkit-fill-available"
+              paddingX="10px"
+              pointerEvents="none"
+            >
+              <IconButton
+                size="lg"
+                variant="unstyled"
+                color="gray.500"
+                aria-label="Search database"
+                icon={<Search2Icon />}
+              />
+            </InputLeftElement>
+            <Input
+              placeholder="Rechercher par titre "
+              bgColor="white"
+              fontSize="xl"
+              textAlign={["left"]}
+              type="search"
+              onChange={handleChangeSearch}
+            />
+          </InputGroup>
+        </Flex>
         <Select
           placeholder="Catégories"
           bgColor="white"
@@ -188,7 +227,8 @@ export default function Filters() {
                 !choosenValueCategory &&
                 !choosenValuePlayers &&
                 !choosenValueAge &&
-                !choosenValueDuration
+                !choosenValueDuration &&
+                !search
               ) {
                 return [data];
               }
@@ -203,6 +243,9 @@ export default function Filters() {
               }
               if (choosenValueDuration) {
                 return data.duration.includes(choosenValueDuration);
+              }
+              if (search) {
+                return data.title.includes(search);
               }
               return data;
             })
