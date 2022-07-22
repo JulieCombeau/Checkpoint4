@@ -4,9 +4,9 @@ import { createContext, useState, useEffect } from "react";
 
 import backendAPI from "../services/backendAPI";
 
-const CurrentGameContext = createContext();
+const CurrentGamesContext = createContext();
 
-export function CurrentGameContextProvider({ children }) {
+export function CurrentGamesContextProvider({ children }) {
   const [games, setGames] = useState([]);
 
   const getAllGames = () => {
@@ -25,10 +25,10 @@ export function CurrentGameContextProvider({ children }) {
   }, []);
 
   return (
-    <CurrentGameContext.Provider value={{ games, setGames }}>
+    <CurrentGamesContext.Provider value={{ games, setGames }}>
       {children}
-    </CurrentGameContext.Provider>
+    </CurrentGamesContext.Provider>
   );
 }
 
-export default CurrentGameContext;
+export default CurrentGamesContext;
