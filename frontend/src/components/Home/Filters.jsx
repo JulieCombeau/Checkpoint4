@@ -201,7 +201,7 @@ export default function Filters() {
       <Flex
         width={{ base: "100%", xl: "98%" }}
         justifyContent="space-around"
-        rowGap="2"
+        rowGap="4"
         flexWrap="wrap"
         flexDirection="row"
         h={{ base: "40vh", md: "45vh", lg: "65vh", xl: "70vh" }}

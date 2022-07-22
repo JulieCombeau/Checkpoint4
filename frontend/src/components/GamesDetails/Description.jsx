@@ -30,7 +30,7 @@ export default function Description({ game }) {
         my="1rem"
         flexDir="column"
         gap="4"
-        text-align="left"
+        textAlign="left"
         p="0.5rem"
       >
         {game.description}
