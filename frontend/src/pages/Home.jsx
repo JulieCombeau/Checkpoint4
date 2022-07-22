@@ -1,15 +1,22 @@
-import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 
-// import { useContext } from "react";
+import { useContext } from "react";
 
 import Header from "../components/Header";
 import Filters from "../components/Home/Filters";
-import logo from "../assets/logo.svg";
 
-// import CurrentGameContext from "../contexts/GameContext";
+import CurrentUsersContext from "../contexts/UsersContext";
+import CurrentGamesContext from "../contexts/GamesContext";
+import CurrentEditorsContext from "../contexts/EditorsContext";
 
 export default function Home() {
-  // const { games } = useContext(CurrentGameContext);
+  const { users } = useContext(CurrentUsersContext);
+  const { games } = useContext(CurrentGamesContext);
+  const { editors } = useContext(CurrentEditorsContext);
+
+  const numberOfGame = games.length;
+  const numberOfUsers = users.length;
+  const numberOfEditors = editors.length;
 
   return (
     <Box h="100vh">
@@ -26,7 +33,7 @@ export default function Home() {
           <Heading m="1rem" color="#4F3521">
             A quoi on joue ?
           </Heading>
-          <Flex w="100%" flexDir={{ base: "column", md: "row" }} rowGap="5">
+          <Flex w="100%" flexDir={{ base: "column", lg: "row" }} rowGap="5">
             <Flex
               ml="auto"
               alignSelf="center"
@@ -34,11 +41,11 @@ export default function Home() {
               borderRadius="20px"
               h="fit-content"
               p="1rem"
-              flexDir={{ base: "row", md: "column" }}
+              flexDir={{ base: "row", lg: "column" }}
               justifyContent="space-between"
-              w={{ base: "100%", md: "20%" }}
-              maxW={{ base: "100%", md: "200px" }}
-              align={{ base: "center", md: "left" }}
+              w={{ base: "100%", lg: "20%" }}
+              maxW={{ base: "100%", lg: "200px" }}
+              align={{ base: "center", lg: "left" }}
               rowGap="50px"
             >
               <Flex
@@ -52,8 +59,14 @@ export default function Home() {
                 h="33%"
                 alignSelf="center"
               >
-                <Image src={logo} w="100%" h="50%" />
-                <Text m="auto">Nombre d'utilisateur</Text>
+                <Box w="100%" h="50%">
+                  <Text fontSize="7xl" textShadow="-5px 1px 4px rgba(79,53,33)">
+                    {numberOfUsers}
+                  </Text>
+                </Box>
+                <Text m="auto" mb="0.5rem">
+                  Nombre de d'utilisateurs
+                </Text>
               </Flex>
               <Flex
                 bgColor="white"
@@ -66,8 +79,14 @@ export default function Home() {
                 h="33%"
                 alignSelf="center"
               >
-                <Image src={logo} w="100%" h="50%" />
-                <Text m="auto">Nombre de jeux</Text>
+                <Box w="100%" h="50%">
+                  <Text fontSize="7xl" textShadow="-5px 1px 4px rgba(79,53,33)">
+                    {numberOfGame}
+                  </Text>
+                </Box>
+                <Text m="auto" mb="0.5rem">
+                  Nombre de jeux
+                </Text>
               </Flex>
               <Flex
                 bgColor="white"
@@ -80,21 +99,17 @@ export default function Home() {
                 h="33%"
                 alignSelf="center"
               >
-                <Image src={logo} w="100%" h="50%" />
-                <Text m="auto">Nombre d'utilisateur</Text>
+                <Box w="100%" h="50%">
+                  <Text fontSize="7xl" textShadow="-5px 1px 4px rgba(79,53,33)">
+                    {numberOfEditors}
+                  </Text>
+                </Box>
+                <Text m="auto" mb="0.5rem">
+                  Nombre de vendeurs
+                </Text>
               </Flex>
             </Flex>
-            <Flex
-              mx="auto"
-              p="1rem"
-              flexDir="column"
-              w={{ base: "100%", md: "75%" }}
-              gap="10"
-              boxShadow="2xl"
-              borderRadius="20px"
-            >
-              <Filters />
-            </Flex>
+            <Filters />
           </Flex>
         </Flex>
       </Flex>

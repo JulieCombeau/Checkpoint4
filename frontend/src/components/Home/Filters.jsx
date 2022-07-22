@@ -2,7 +2,7 @@ import { Flex, Select, Button } from "@chakra-ui/react";
 import { useState, useContext } from "react";
 import MiniCard from "../GamesCards/MiniCard";
 
-import CurrentGameContext from "../../contexts/GameContext";
+import CurrentGameContext from "../../contexts/GamesContext";
 
 export default function Filters() {
   const { games } = useContext(CurrentGameContext);
@@ -37,7 +37,7 @@ export default function Filters() {
       mx="auto"
       p="1rem"
       flexDir="column"
-      w={{ base: "100%", md: "75%" }}
+      w={{ base: "100%", lg: "75%" }}
       gap="10"
       boxShadow="2xl"
       borderRadius="20px"
