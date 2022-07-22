@@ -52,6 +52,14 @@ export default function CollapseCreateGame({ isOpen, onToggle }) {
             isClosable: true,
           });
         }
+        setTitle("");
+        setDescription("");
+        setContent("");
+        setPicture("");
+        setCategory("");
+        setAge("");
+        setPlayers("");
+        setDuration("");
         onToggle();
       })
       .catch((error) => {
