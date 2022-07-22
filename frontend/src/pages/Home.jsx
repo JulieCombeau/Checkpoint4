@@ -1,16 +1,15 @@
 import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
 
-import { useContext } from "react";
+// import { useContext } from "react";
 
 import Header from "../components/Header";
 import Filters from "../components/Home/Filters";
-import MiniCard from "../components/GamesCards/MiniCard";
 import logo from "../assets/logo.svg";
 
-import CurrentGameContext from "../contexts/GameContext";
+// import CurrentGameContext from "../contexts/GameContext";
 
 export default function Home() {
-  const { games } = useContext(CurrentGameContext);
+  // const { games } = useContext(CurrentGameContext);
 
   return (
     <Box h="100vh">
@@ -95,32 +94,6 @@ export default function Home() {
               borderRadius="20px"
             >
               <Filters />
-              <Flex
-                width={{ base: "100%", xl: "98%" }}
-                justifyContent="space-around"
-                rowGap="2"
-                flexWrap="wrap"
-                flexDirection="row"
-                h="70vh"
-                scrollBehavior="smooth"
-                overflowY="auto"
-                sx={{
-                  "&::-webkit-scrollbar": {
-                    width: "18px",
-                    borderRadius: "8px",
-                    backgroundColor: "white",
-                  },
-                  "&::-webkit-scrollbar-thumb": {
-                    borderRadius: "8px",
-                    border: "2px",
-                    color: "#4F3521",
-                  },
-                }}
-              >
-                {games.map((game) => (
-                  <MiniCard game={game} />
-                ))}
-              </Flex>
             </Flex>
           </Flex>
         </Flex>

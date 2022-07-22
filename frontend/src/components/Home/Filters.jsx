@@ -1,6 +1,30 @@
 import { Flex, Select } from "@chakra-ui/react";
+import { useState, useContext } from "react";
+import MiniCard from "../GamesCards/MiniCard";
+
+import CurrentGameContext from "../../contexts/GameContext";
 
 export default function Filters() {
+  const { games } = useContext(CurrentGameContext);
+
+  const [choosenValueCategory, setChoosenValueCategory] = useState("");
+  const [choosenValuePlayers, setChoosenValuePlayers] = useState("");
+  const [choosenValueAge, setChoosenValueAge] = useState("");
+  const [choosenValueDuration, setChoosenValueDuration] = useState("");
+
+  const handleChangeCategory = (e) => {
+    setChoosenValueCategory(e.target.value);
+  };
+  const handleChangePlayers = (e) => {
+    setChoosenValuePlayers(e.target.value);
+  };
+  const handleChangeAge = (e) => {
+    setChoosenValueAge(e.target.value);
+  };
+  const handleChangeDuration = (e) => {
+    setChoosenValueDuration(e.target.value);
+  };
+
   return (
     <Flex
       justifyContent="left"
@@ -14,8 +38,8 @@ export default function Filters() {
         placeholder="Catégories"
         bgColor="white"
         w="fit-content"
-        //   value={choosenValueSkills}
-        //   onChange={handleChangeSkills}
+        value={choosenValueCategory}
+        onChange={handleChangeCategory}
       >
         <option value="Casse-Tête">Casse-Tête</option>
         <option value="Escape Game">Escape Game</option>
@@ -35,7 +59,7 @@ export default function Filters() {
         <option value="Jeu De Construction">Jeu De Construction</option>
         <option value="Jeu De Dés">Jeu De Dés</option>
         <option value="Jeu De Dominos">Jeu De Dominos</option>
-        <option value="Jeu De Figurines"> eu De Figurines</option>
+        <option value="Jeu De Figurines">Jeu De Figurines</option>
         <option value="Jeu De Lettres">Jeu De Lettres</option>
         <option value="Jeu De Loto">Jeu De Loto</option>
         <option value="Jeu De Manipulation">Jeu De Manipulation</option>
@@ -56,8 +80,8 @@ export default function Filters() {
         bgColor="white"
         placeholder="Nombres de joueurs"
         w="fit-content"
-        //   value={choosenValueAgency}
-        //   onChange={handleChangeAgency}
+        value={choosenValuePlayers}
+        onChange={handleChangePlayers}
       >
         <option value="1-2">1 - 2</option>
         <option value="1-3">1 - 3</option>
@@ -76,8 +100,8 @@ export default function Filters() {
         placeholder="Ages"
         bgColor="white"
         w="fit-content"
-        //   value={choosenValueSkills}
-        //   onChange={handleChangeSkills}
+        value={choosenValueAge}
+        onChange={handleChangeAge}
       >
         <option value="1+">1+</option>
         <option value="2+">2+</option>
@@ -95,17 +119,69 @@ export default function Filters() {
         placeholder="Durée"
         bgColor="white"
         w="fit-content"
-        //   value={choosenValueSkills}
-        //   onChange={handleChangeSkills}
+        value={choosenValueDuration}
+        onChange={handleChangeDuration}
       >
         <option value="0-15">0 - 15</option>
         <option value="0-30">0 - 30</option>
         <option value="0-60">0 - 60</option>
         <option value="0-120">0 - 120</option>
         <option value="0-180">0 - 180</option>
+        <option value="30-60">30 - 60</option>
+        <option value="30-120">30 - 120</option>
+        <option value="30-180">30 - 180</option>
         <option value="60-120">60 - 120</option>
         <option value="60-180">60 - 180</option>
       </Select>
+      <Flex
+        width={{ base: "100%", xl: "98%" }}
+        justifyContent="space-around"
+        rowGap="2"
+        flexWrap="wrap"
+        flexDirection="row"
+        h="70vh"
+        scrollBehavior="smooth"
+        overflowY="auto"
+        sx={{
+          "&::-webkit-scrollbar": {
+            width: "18px",
+            borderRadius: "8px",
+            backgroundColor: "white",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            borderRadius: "8px",
+            border: "2px",
+            color: "#4F3521",
+          },
+        }}
+      >
+        {games &&
+          games
+            .filter((data) => {
+              if (
+                !choosenValueCategory &&
+                !choosenValuePlayers &&
+                !choosenValueAge &&
+                !choosenValueDuration
+              ) {
+                return [data];
+              }
+              if (choosenValueCategory) {
+                return data.category.includes(choosenValueCategory);
+              }
+              if (choosenValuePlayers) {
+                return data.players.includes(choosenValuePlayers);
+              }
+              if (choosenValueAge) {
+                return data.age.includes(choosenValueAge);
+              }
+              if (choosenValueDuration) {
+                return data.duration.includes(choosenValueDuration);
+              }
+              return data;
+            })
+            .map((game) => <MiniCard game={game} />)}
+      </Flex>
     </Flex>
   );
 }
