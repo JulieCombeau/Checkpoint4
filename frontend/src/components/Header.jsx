@@ -7,7 +7,7 @@ import backendAPI from "../services/backendAPI";
 
 import CurrentUserContext from "../contexts/UserContext";
 
-import logo from "../assets/logo.svg";
+import Logo from "../assets/Logo.jpg";
 
 export default function Header() {
   const [isSignUp, setIsSignUp] = useState(
@@ -38,7 +38,7 @@ export default function Header() {
       alignItems="center"
       flexDir={{ base: "row", md: "column" }}
     >
-      <Image src={logo} alt="" w={{ base: "0", md: "100%" }} />
+      <Image src={Logo} alt="" w={{ base: "0", sm: "20%", md: "100%" }} />
       <Flex
         justifyContent="center"
         m="0.2rem"

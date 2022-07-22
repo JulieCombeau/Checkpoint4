@@ -204,7 +204,7 @@ export default function Filters() {
         rowGap="2"
         flexWrap="wrap"
         flexDirection="row"
-        h="70vh"
+        h={{ base: "40vh", md: "45vh", lg: "65vh", xl: "70vh" }}
         scrollBehavior="smooth"
         overflowY="auto"
         sx={{

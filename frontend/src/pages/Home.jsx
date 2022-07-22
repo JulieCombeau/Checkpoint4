@@ -26,8 +26,7 @@ export default function Home() {
           bgColor="#FFFDF8"
           flexDir="column"
           minW="81vw"
-          minH="100vh"
-          gap="5"
+          minH={{ base: "90vh", lg: "100vh" }}
           h="fit-content"
         >
           <Heading m="1rem" color="#4F3521">
@@ -57,10 +56,14 @@ export default function Home() {
                 borderRadius="20px"
                 w="100%"
                 h="33%"
+                maxH={{ base: "100px", sm: "33%" }}
                 alignSelf="center"
               >
                 <Box w="100%" h="50%">
-                  <Text fontSize="7xl" textShadow="-5px 1px 4px rgba(79,53,33)">
+                  <Text
+                    fontSize={{ base: "4xl", md: "7xl" }}
+                    textShadow="-5px 1px 4px rgba(79,53,33)"
+                  >
                     {numberOfUsers}
                   </Text>
                 </Box>
@@ -77,10 +80,14 @@ export default function Home() {
                 borderRadius="20px"
                 w="100%"
                 h="33%"
+                maxH={{ base: "100px", sm: "33%" }}
                 alignSelf="center"
               >
                 <Box w="100%" h="50%">
-                  <Text fontSize="7xl" textShadow="-5px 1px 4px rgba(79,53,33)">
+                  <Text
+                    fontSize={{ base: "4xl", md: "7xl" }}
+                    textShadow="-5px 1px 4px rgba(79,53,33)"
+                  >
                     {numberOfGame}
                   </Text>
                 </Box>
@@ -97,10 +104,14 @@ export default function Home() {
                 borderRadius="20px"
                 w="100%"
                 h="33%"
+                maxH={{ base: "100px", sm: "33%" }}
                 alignSelf="center"
               >
                 <Box w="100%" h="50%">
-                  <Text fontSize="7xl" textShadow="-5px 1px 4px rgba(79,53,33)">
+                  <Text
+                    fontSize={{ base: "4xl", md: "7xl" }}
+                    textShadow="-5px 1px 4px rgba(79,53,33)"
+                  >
                     {numberOfEditors}
                   </Text>
                 </Box>
